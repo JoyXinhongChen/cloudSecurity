@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script>
+    function convert(){
+            var str = document.getElementById("inputS").value;
+            var lth = str.length;
+            var finalText = "";
+           for(i=0;i<lth;i++){
+               var obj = str.charCodeAt(i);
+               finalText += obj + " ";
+           }
+           document.getElementById("output").value = finalText;
+        }
+
+</script>
+<body>
+    <p>Convert to ASCII Code</p>
+    <hr>
+    <div>
+        <label for="inputS">Input string:</label>
+        <input id="inputS" type="text"><br>
+        <button type="submit" onclick="convert()">Convert</button><br>
+      <textarea name="output" id="output" cols="20" rows="20"></textarea>
+    
+    </div>
+    
+</body>
+</html>

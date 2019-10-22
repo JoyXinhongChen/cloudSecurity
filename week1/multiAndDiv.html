@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Multiplication and Division</title>
+</head>
+<script>
+    function multiply() {
+        var input1 = document.getElementById("myInput1").value;
+        var input2 = document.getElementById("myInput2").value;
+        var result = input1 * input2;
+        if (isNaN(result)) {
+            alert("Wrong input!");
+        } else {
+            document.getElementById("output1").value = result;
+        }
+    }
+
+    function divide() {
+        var input1 = document.getElementById("myInput1").value;
+        var input2 = document.getElementById("myInput2").value;
+        var result = input1 / input2;
+        if (isNaN(result)) {
+            alert("Wrong input!");
+        } else {
+            document.getElementById("output2").value = result;
+        }}
+</script>
+
+<body>
+    <p>Multiplication and Division</p>
+    <hr>
+    <div>
+        <label for="myInput1">1st number:</label>
+        <input id="myInput1" type="text"><br>
+        <label for="myInput2">2st number:</label>
+        <input id="myInput2" type="text"><br>
+        <button type="submit" onclick="multiply()">Multiply</button>
+        <input id="output1" type="text"> <br>
+        <button type="submit" onclick="divide()">Divide</button>
+        <input id="output2" type="text"><br>
+    </div>
+</body>
+
+</html>

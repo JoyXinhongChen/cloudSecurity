@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Decimal-Binary</title>
+</head>
+<script>
+ function convertToBin(){
+           var num = document.getElementById("inputDec").value;
+           if (isNaN(num)){
+            alert("Invaild input! Please enter a number!")
+           }else{
+            document.getElementById("output1").value = parseInt(num, 10).toString(2);
+           }
+        }
+function convertToDec(){
+        var num = document.getElementById("inputBin").value;
+           if (isNaN(num)){
+            alert("Invaild input! Please enter a number!")
+           }else{
+            if(/^[01]+$/ .test(num)){
+            document.getElementById("output2").value = parseInt(num, 2).toString(10);
+           }
+           else
+           alert("Invaild input!Please enter a binary number!")
+        }}
+</script>
+<body>
+    <p>Decimal-Binary</p><hr>
+    <div>
+    <label for="inputDec">Decimal number:</label>
+    <input id="inputDec" type="text"><br>
+    <button type="submit" onclick="convertToBin()">Convert to Binary</button><br>
+    <textarea name="output1" id="output1" cols="20" rows="20"></textarea>
+    </div><hr>
+    <div>
+    <label for="inputBin">Binary number:</label>
+    <input id="inputBin" type="text"><br>
+    <button type="submit" onclick="convertToDec()">Convert to Decimal</button><br>
+    <textarea name="output2" id="output2" cols="20" rows="20"></textarea>
+    </div>
+</body>
+</html>

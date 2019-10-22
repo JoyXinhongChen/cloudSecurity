@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Guess a number from 1 to 10</title>
+</head>
+<script>
+        function calculateNum() {
+          var input = document.getElementById("myInput");
+          var randomNum = Math.floor(Math.random() * 10 + 1);
+          if (input == randomNum) {
+            document.getElementById("myOutput").innerHTML =
+              "Yes you are correct!";
+          } else {
+            document.getElementById("myOutput").innerHTML =
+              "Not matched!Correct number:" + randomNum;
+          }
+        }
+      </script>
+<body>
+    <p>Guess a number from 1 to 10</p>
+    <label for="myInput">Input Num:</label>
+    <input id="myInput" type="input" />
+    <button type="submit" onclick="calculateNum()">try it</button>
+  <div id="myOutput"></div>
+</body>
+</html>
