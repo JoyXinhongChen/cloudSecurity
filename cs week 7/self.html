@@ -1,0 +1,78 @@
+！ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AES Encryption -Decryption</title>
+    <style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .column {
+        float: left;
+        width: 30%;
+        padding: 10px;
+
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    span {
+        padding-right: 50px;
+    }</style>
+    <script type="text/javascript" src=sjcl.js></script>
+</head>
+<body>
+    
+    <h1>AES Encryption -Decryption</h1>
+<div>
+<div class="row">
+    <div class="column">
+        <label>32 hexadeciaml digits key(128 bits):</label>
+    </div>
+    <div class="column">
+        <textarea id="input1" cols="80" rows="2"></textarea>
+    </div>
+</div>
+<div class="row">
+    <div class="column">
+        <label>Choose a file:</label> 
+    </div>
+    <div class="colunm">
+        <input type="file" id="file" name="file" multiple />
+        <output id="list"></output>
+    </div>
+</div>
+<div class="row">
+    <div class="column">
+        <label>File contents:</label>
+    </div>
+    <div class="column">
+        <textarea id="content" cols="80" rows="10"></textarea>
+    </div>
+</div>
+
+<div class="row">
+    <div class="column">
+        <label>Message for authentication:</label>
+    </div>
+    <div class="column">
+        <textarea id=" " cols="30" rows="10"></textarea>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+</body>
+</html>

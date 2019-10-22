@@ -1,0 +1,186 @@
+<title>Chi X step</title>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Create 5 equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 12%;
+        padding: 10px;
+        height: 50px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    span {
+        padding-right: 50px;
+    }
+</style>
+</head>
+
+<body>
+
+    <h1>Chi X step</h1>
+    <p>
+        <div class="row">
+            <div class="column">
+                <label>Original B[x,y]</label>
+            </div>
+            <div class="column">
+                <label>xor(</label>
+            </div>
+            <div class="column">
+                <label>(B[x+1,y])</label>
+            </div>
+            <div class="column">
+                <label>^</label>
+            </div>
+            <div class="column">
+                <label>b[x+2,y])</label>
+            </div>
+            <div class="column">
+                <label>=></label>
+            </div>
+            <div class="column">
+                <label>New A[x,y]</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <label id="show1"></label>
+            </div>
+            <div class="column">
+                <button id="showResult">Show =></button>
+            </div>
+            <div class="column">
+                <label id="show2"></label>
+            </div>
+            <div class="column">
+                <label>=></label>
+            </div>
+            <div class="column">
+                <label id="show3"></label>
+            </div>
+            <div class="column">
+                <label>=></label>
+            </div>
+            <div class="column">
+                <label id="show4"></label>
+            </div>
+        </div>
+
+
+        <script type="text/javascript">
+        //A[x,y] = B[x,y] xor ((not B[x+1,y]) and B[x+2,y])
+
+            function xor(arr1,arr2) {
+                var result = new Array();
+                result=[arr1[0]^arr2[0],arr1[1]^arr2[1],arr1[2]^arr2[2],arr1[3]^arr2[3],arr1[4]^arr2[4]];
+                return result;
+            }
+
+            //move array to left n times.
+            function moveElement(arr, n) {
+                return arr.slice(n, arr.length).concat(arr.slice(0,n))
+            }
+
+            function and(arr1,arr2){
+                var result = new Array();
+                result=[arr1[0]&arr2[0],arr1[1]&arr2[1],arr1[2]&arr2[2],arr1[3]&arr2[3],arr1[4]&arr2[4]];
+                return result;
+            }
+
+            //original B[x,y]
+            var arrB = [
+                [0, 0, 0, 0, 1],
+                [0, 0, 0, 1, 1],
+                [0, 0, 1, 1, 1],
+                [0, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1]
+            ], arrBText = '';
+            //print arrB
+            for (var i = 0; i < arrB.length; i++) {
+                for (var j = 0; j < arrB[i].length; j++) {
+                    arrBText += arrB[i][j] + ' ';
+                }
+                arrBText += '\n';
+            }
+            document.getElementById("show1").innerText = arrBText;
+
+            //B1[x+1,y]
+            var arrB1 = new Array();
+            var arrB1Text = '';
+            //move array line by line
+            for (var i = 0; i < arrB.length; i++) {
+                arrB1[i]=moveElement(arrB[i],1);
+            }
+            //change 0 and 1 to each other and print.(not)
+            for (var i = 0; i < arrB.length; i++) {
+                for (var j = 0; j < arrB[i].length; j++) {
+                    if(arrB1[i][j]==0){
+                        arrB1[i][j]=1;
+                    }else{
+                        arrB1[i][j]=0;
+                    }
+                    arrB1Text += arrB1[i][j] + ' ';
+                }
+                arrB1Text += '\n';
+
+            }
+
+
+            //B1[x+2,y]
+            var arrB2 = new Array();
+            var arrB2Text = '';
+            //move array line by line
+            for (var i = 0; i < arrB.length; i++) {
+                arrB2[i]=moveElement(arrB[i],2);
+            }
+            //print arrB2
+            for (var i = 0; i < arrB.length; i++) {
+                for (var j = 0; j < arrB[i].length; j++) {
+                    arrB2Text += arrB2[i][j] + ' ';
+                }
+                arrB2Text += '\n';
+
+            }
+
+             //B1&B2
+            var arr = new Array();
+            for (var i = 0; i < arrB.length; i++) {
+               arr[i]=and(arrB1[i],arrB2[i]);
+            }
+
+            var arrA = new Array();
+            var arrAText = '';
+            for (var i = 0; i < arrB.length; i++) {
+               arrA[i]=xor(arrB[i],arr[i]);
+            }
+            //print arrA
+            for (var i = 0; i < arrA.length; i++) {
+                for (var j = 0; j < arrA[i].length; j++) {
+                    arrAText += arrA[i][j] + ' ';
+                }
+                arrAText += '\n';
+
+            }
+
+
+            document.getElementById("showResult").onclick = function () {
+                document.getElementById("show2").innerText = arrB1Text;
+                document.getElementById("show3").innerText = arrB2Text;
+                document.getElementById("show4").innerText = arrAText;
+
+            };
+        </script>
+    </p>
+
+</body>

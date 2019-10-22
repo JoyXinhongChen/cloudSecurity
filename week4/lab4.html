@@ -1,0 +1,113 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>RSA</title>
+    <script src="task4.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Create two equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 20%;
+            padding: 10px;
+            height: 50px;
+            /* Should be removed. Only for demonstration */
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        span {
+            padding-right: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="column">
+            <label>prime p:</label>
+        </div>
+        <div class="column">
+            <input id="p" value="131">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <label>prime q:</label>
+        </div>
+        <div class="column">
+            <input id="q" value="137">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <label>n=p*q:</label>
+        </div>
+        <div class="column">
+            <label id="n"></label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column">
+
+            <label>ϕ(n)=(p-1)(q-1):</label>
+        </div>
+        <div class="column">
+            <label id="phi"></label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <label>e:</label>
+        </div>
+        <div class="column">
+            <label id="e"></label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <label>d:</label>
+        </div>
+        <div class="column">
+            <label id="d"></label><br>
+            <button id="calc" onclick="calcE()">generate</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <label>message:</label>
+        </div>
+        <div class="column">
+            <input id="message" value="0646"><button id="sign" onclick="sign()">signature</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <label>signature:</label>
+        </div>
+        <div class="column">
+            <input id="signature" disabled='true'><button id="verify" onclick="verify()">verify</button>
+        </div>
+    </div>
+</body>
+
+</html>

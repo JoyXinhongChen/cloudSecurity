@@ -1,0 +1,120 @@
+<title>mix column</title>
+</head>
+<body>
+
+<h1>mix column</h1> 
+<p>
+    input 16-bit binary:<input id="input" name ="inputbinary" type = "text" >
+    <button id="button">Matrix multiply</button>
+    <br>
+    matrix S<h1 id="show1" ></h1>
+ 
+    matrix M<h1 id="show2" ></h1>
+    <br>
+    output binary:<input id="output" name ="outputbinary" type = "text" >
+    <br>
+    matrix S'<h1 id="show3" ></h1>
+
+    <script type ="text/javascript">
+    
+    var table=[
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F'],
+            [0,2,4,6,8,'A','C','E',3,1,7,5,'B',9,'F','D'],
+            [0,3,6,5,'C','F','A',9,'B',8,'D','E',7,4,1,2],
+            [0,4,8,'C',3,7,'B','F',6,2,'E','A',5,1,'D',9],
+            [0,5,'A','F',7,2,'D',8,'E','B',4,1,9,'C',3,6],
+            [0,6,'C','A','B','D',7,1,5,3,9,'F','E',8,2,4],
+            [0,7,'E',9,'F',8,1,6,'D','A',3,4,2,5,'C','B'],
+            [0,8,3,'B',6,'E',5,'D','C',4,'F',7,'A',2,9,1],
+            [0,9,1,8,2,'B',3,'A',4,'D',5,'C',6,'F',7,'E'],
+            [0,'A',7,'D','E',4,9,3,'F',5,8,2,1,'B',6,'C'],
+            [0,'B',5,'E','A',1,'F',4,7,'C',2,9,'D',6,8,3],
+            [0,'C','B',7,5,9,'E',2,'A',6,1,'D','F',3,4,8],
+            [0,'D',9,4,1,'C',8,5,2,'F','B',6,3,'E','A',7],
+            [0,'E','F',1,'D',3,2,'C',9,7,6,8,4,'A','B',5],
+            [0,'F','D',2,9,6,4,'B',1,'E','C',3,8,7,5,'A']
+        ];
+
+    function getBinary(str){
+        if(str=='A'||str=='B'||str=='C'||str=='D'||str=='E'||str=='F'){
+            var result =parseInt(str,16).toString(2);
+        }else{
+            var result = parseInt(str,10).toString(2);
+        }
+          var zero="";
+          if(result.length%4!=0){
+          for(var i=0;i<(4-result.length%4);i++){
+              zero+="0";
+          }
+          }
+          result =zero+result;
+          return result;
+    }
+
+    function getXOR(str1,str2){
+        var result = String(str1[0]^str2[0])+""+String(str1[1]^str2[1])+""
+        +String(str1[2]^str2[2])+""+String(str1[3]^str2[3]);
+        return result;
+    }
+
+    
+
+    document.getElementById("button").onclick=function getdata(){
+        var input=document.getElementById("input").value;
+        var S00=input.trim().split(" ")[0];
+        var S10=input.trim().split(" ")[1];
+        var S01=input.trim().split(" ")[2];
+        var S11=input.trim().split(" ")[3];
+        var arrS=[
+            [S00,S01],
+            [S10,S11]
+        ],arrSText='';
+        for(var i=0;i<arrS.length;i++){
+            for(var j=0;j<arrS[i].length;j++){
+                arrSText+=arrS[i][j]+' ';
+            }
+            arrSText+='<br>';
+        }
+
+        var arrM=[
+            [1,4],
+            [4,1]
+        ],arrMText='';
+        for(var i=0;i<arrM.length;i++){
+            for(var j=0;j<arrM[i].length;j++){
+                arrMText+=arrM[i][j]+' ';
+            }
+            arrMText+='<br>';
+        }
+
+        var SS00=getXOR(getBinary(table[parseInt(S00,2)][arrM[0][0]]),getBinary(table[parseInt(S10,2)][arrM[0][1]]));
+        var SS10=getXOR(getBinary(table[parseInt(S00,2)][arrM[1][0]]),getBinary(table[parseInt(S10,2)][arrM[1][1]]));
+        var SS01=getXOR(getBinary(table[parseInt(S01,2)][arrM[0][0]]),getBinary(table[parseInt(S11,2)][arrM[0][1]]));
+        var SS11=getXOR(getBinary(table[parseInt(S01,2)][arrM[1][0]]),getBinary(table[parseInt(S11,2)][arrM[1][1]]));
+        var arrSS=[
+            [SS00,SS01],
+            [SS10,SS11]
+        ],arrSSText='';
+        for(var i=0;i<arrSS.length;i++){
+            for(var j=0;j<arrSS[i].length;j++){
+                arrSSText+=arrSS[i][j]+' ';
+            }
+            arrSSText+='<br>';
+        }
+      
+        document.getElementById("show1").innerHTML=arrSText;
+
+        document.getElementById("show2").innerHTML=arrMText;
+
+        document.getElementById("show3").innerHTML=arrSSText;
+        
+        document.getElementById("output").value=SS00+' '+SS01+' '+SS10+' '+SS11;
+       
+    };
+        
+  
+    </script>
+</p>
+
+</body>

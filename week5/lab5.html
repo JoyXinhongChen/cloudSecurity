@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>chi step function</title>
+</head>
+
+
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Create 5 equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 12%;
+        padding: 10px;
+        height: 50px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    span {
+        padding-right: 50px;
+    }
+</style>
+
+
+<body>
+    <h1>chi x step</h1>
+        <div class="row">
+            <div class="column">
+                <label>Original B[x,y]</label>
+            </div>
+            <div class="column">
+                <label>xor(</label>       
+            </div>
+            <div class="column">
+                <label>(B[x+1,y])</label>
+            </div>
+            <div class="column">
+                <label>^</label>
+            </div>
+            <div class="column">
+                <label>B[x+2,y])</label>
+            </div>
+            <div class="column">
+                <label>=></label>
+            </div>
+            <div class="column">
+                <label>New A[x,y]</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="column">
+                <label id="show1"></label>
+            </div>
+
+            <div class="column">
+                <button onclick="showResult()">Show =></label>
+            </div>
+
+            <div class="column">
+                <label id="show2"></label>
+            </div>
+
+            <div class="column">
+                <label>=></label>
+            </div>
+
+            <div class="column">
+                <label id="show3"></label>
+            </div>
+            <div class="column">
+                    <label>=></label>
+                </div>
+    
+                <div class="column">
+                    <label id="show4"></label>
+                </div>
+        </div>
+
+<script type="text/javascript">
+        var arrB=[
+            [0,0,0,0,1],
+            [0,0,0,1,1],
+            [0,0,1,1,1],
+            [0,1,1,1,1],
+            [1,1,1,1,1]
+        ],arrBText='';
+
+        for(var i=0;i<arrB.length;i++){
+            for(var j=0; j<arrB[i].length;j++){
+                arrBText += arrB[i][j] + ' ';
+            }
+            arrBText +='\n';
+        }
+        document.getElementById("show1").innerText = arrBText;
+
+function showResult(){
+    bx(1);
+    bx(2);
+    b1b2();
+}
+
+function bx(pace){
+    let arrB1=new Array();
+    let arrB1matrix ="";
+    for (let i=0; i<arrB1.length;i++){
+    arrB1[i]=left(arrB[i],pace);
+    }
+}
+
+function left(arr,n){
+    return arr.slice(n,arr.length).concat(arr.slice(0,n))
+}
+
+
+function and(arr1, arr2){
+    var result = new Array();
+    result=[arr1]
+}
+
+
+</script>
+
+
+
+    
+
+
+
+
+</body>
+</html>

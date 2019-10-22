@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+   
+
+
+</head>
+<body>
+<h1>4-bit nibble substitution</h1>
+<label for="input1">4-bit nibble: </label>
+<input id="input1" type="text" value=""> 
+ <button type="submit" onclick="substitute()">Substitute</button>
+ <br>
+<label for="output1">output nibble:</label>
+<input id="output1" type="text">    
+</body>
+
+
+<script>
+    var niddle = new Map();
+    niddle.set('0000','1001');
+    niddle.set('0001','0100');
+    niddle.set('0010','1010');
+    niddle.set('0011','1011');
+    niddle.set('0100','1101');
+    niddle.set('0101','0001');
+    niddle.set('0110','1000');
+    niddle.set('0111','0101');
+    niddle.set('1000','0110');
+    niddle.set('1001','0010');
+    niddle.set('1010','0000');
+    niddle.set('1011','0011');
+    niddle.set('1100','1100');
+    niddle.set('1101','1110');
+    niddle.set('1110','1111');
+    niddle.set('1111','0111');
+function substitute(){
+        var input= document.getElementById("input1").value;
+        if (input.toString().length==4&&!isNaN(input)){
+            var num = input.split("");
+        var a = num[num.length-1];
+        var b = num[num.length-2];
+        var c = num[num.length-3];
+        var d = num[num.length-4];
+
+        if((a==1||a==0)&&(b==0||b==1)&&(c==0||c==1)&&(d==0||d==1)){
+              
+            var result=niddle.get(input);
+        document.getElementById("output1").value=result;
+            }else(alert("wrong format!"))
+
+        }else{
+            alert("4 digits number please")};
+    
+        }
+
+
+
+</script>
+
+</html>
